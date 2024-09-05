@@ -16,7 +16,7 @@ def upload_script(request):
             return redirect('analyze_script', script_id=script.id)
     else:
         form = ScriptUploadForm()
-    return render(request, 'script_python/upload_script.html', {'form': form})
+    return render(request, 'scripdown_python/upload_script.html', {'form': form})
 
 @login_required
 def analyze_script(request, script_id):
@@ -54,7 +54,7 @@ def analyze_script(request, script_id):
         messages.error(request, f"An error occurred during script analysis: {str(e)}")
         return redirect('upload_script')
     
-    return render(request, 'script_python/analysis_result.html', {
+    return render(request, 'scripdown_python/analysis_result.html', {
         'script': script,
         'characters': characters,
         'scenes': scenes,
@@ -75,4 +75,4 @@ def adjust_budget(request, script_id):
         budget.breakdown = updated_budget['breakdown']
         budget.save()
     
-    return render(request, 'script_python/budget_estimate.html', {'budget': budget})
+    return render(request, 'scripdown_python/budget_estimate.html', {'budget': budget})
